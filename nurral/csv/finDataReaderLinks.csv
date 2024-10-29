@@ -1,0 +1,2 @@
+database,provider,type,workbookId,worksheetId,csvLink
+googleSheets,BoC,spot,1dsP-OXdNbdkob6J1d8BZ4cvowc1k0eEHLZv9qX8Ey9k,0,https://docs.google.com/spreadsheets/d/1dsP-OXdNbdkob6J1d8BZ4cvowc1k0eEHLZv9qX8Ey9k/export?format=csv&gid=0
