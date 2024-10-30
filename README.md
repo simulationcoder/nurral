@@ -38,40 +38,41 @@ To get started, clone this repository and install any dependencies. The primary 
 The Currency class provides a getFxRate method for querying and filtering FX rate data. It supports filtering by database, provider, type, date range, row count, and currency pairs.
 
 # Attributes
-Database: Source of FX rate data (e.g., googleSheets).
-Provider: FX rate provider (e.g., BoC for Bank of Canada).
-Type: Type of FX rate (e.g., spot).
-CurrencyPairs: List of currency pairs for filtering (e.g., ['USD/CAD']).
-Date Range: Optional date range (startDate and endDate).
-Row Extraction: Optional number of rows from the start (headRows) or end (tailRows).
+- Database: Source of FX rate data (e.g., googleSheets).
+- Provider: FX rate provider (e.g., BoC for Bank of Canada).
+- Type: Type of FX rate (e.g., spot).
+- CurrencyPairs: List of currency pairs for filtering (e.g., ['USD/CAD']).
+- Date Range: Optional date range (startDate and endDate).
+- Row Extraction: Optional rows from the start (headRows) or end (tailRows).
 
 # Method: getFxRate
 The getFxRate method retrieves FX rates from specified sources with various filters.
 
 # Parameters
-database (str): FX rate data source. Supported values: 'googleSheets'.
-provider (str): FX rate provider. Supported values: 'BoC'.
-typeof (str): FX rate type. Supported values: 'spot'.
-currencyPairs (list or str): Currency pairs to filter by. Default is 'All'.
-startDate (str): Start date for data filtering (format YYYY-MM-DD).
-endDate (str): End date for data filtering (format YYYY-MM-DD).
-allDates (str): Return all data if set to 'Yes'.
-headRows (int): Number of rows to extract from the top.
-tailRows (int): Number of rows to extract from the bottom.
+- database (str): FX rate data source. Supported values: 'googleSheets'.
+- provider (str): FX rate provider. Supported values: 'BoC'.
+- typeof (str): FX rate type. Supported values: 'spot'.
+- currencyPairs (list or str): Currency pairs to filter by. Default is 'All'.
+- startDate (str): Start date for data filtering (format YYYY-MM-DD).
+- endDate (str): End date for data filtering (format YYYY-MM-DD).
+- allDates (str): Return all data if set to 'Yes'.
+- headRows (int): Number of rows to extract from the top.
+- tailRows (int): Number of rows to extract from the bottom.
 
 # Returns
-sub_extract (DataFrame): Extracted FX rate data.
-value (int): Status code:
-0: Error.
-1: Success.
-2: Currency pairs not found.
-3: Insufficient filtering conditions.
-exitPhrase (str): Descriptive message explaining the status.
+- sub_extract (DataFrame): Extracted FX rate data.
+- value (int): Status code:
+    - 0: Error.
+    - 1: Success.
+    - 2: Currency pairs not found.
+    - 3: Insufficient filtering conditions.
+- exitPhrase (str): Descriptive message explaining the status.
 
 # Usage Examples
 Below are examples demonstrating how to use the getFxRate method.
 
 # Example 1: Retrieve Specific Date Range and Currency Pair
+```
 from currency import Currency
 
 currency_data, status, message = Currency.getFxRate(
@@ -83,9 +84,11 @@ currency_data, status, message = Currency.getFxRate(
     endDate='2023-12-31'
 )
 print(status, message)
+```
 
 # Example 2: Retrieve Latest 10 Rows for Specific Currency Pairs
-
+```
+from currency import Currency
 currency_data, status, message = Currency.getFxRate(
     database='googleSheets',
     provider='BoC',
@@ -94,9 +97,11 @@ currency_data, status, message = Currency.getFxRate(
     currencyPairs=['AUDCAD', 'INRCAD']
 )
 print(status, message)
+```
 
 # Example 3: Retrieve All Data Without Date Filtering
-
+```
+from currency import Currency
 currency_data, status, message = Currency.getFxRate(
     database='googleSheets',
     provider='BoC',
@@ -104,6 +109,6 @@ currency_data, status, message = Currency.getFxRate(
     allDates='Yes'
 )
 print(status, message)
-
+```
 # Error Handling
 Error codes and messages are predefined in the returnValues dictionary to identify and communicate success, failure, or any specific issues with the query, such as missing currency pairs or incorrect date formats.
